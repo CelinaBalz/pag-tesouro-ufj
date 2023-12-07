@@ -7,12 +7,14 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    colors: {
+      'azul-900': '#1C2A40',
+      'azul-500': '#1351B4',
+      'azul-200': '#5C7EB5',
+      'cinza-500': '#333333',
+      'vermelho-500': '#B21D38'
+    },
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
     },
   },
   plugins: [],

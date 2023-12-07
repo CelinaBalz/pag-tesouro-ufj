@@ -35,7 +35,22 @@ export default function Home() {
           <button type="submit">Enviar</button>
         </form>
         <footer>
-          
+          <div>
+            <h3>Contato</h3>
+            <ul>
+              <li>secom@ufj.edu.br</li>
+              <li>secom@ufj.edu.br</li>
+              <li>Seti (00) 000 - 000</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Redes sociais</h3>
+            <ul>
+              <li>Instagram</li>
+              <li>Youtube</li>
+              <li>Twitter</li>
+            </ul>
+          </div>
         </footer>
       </div>
     </main>
