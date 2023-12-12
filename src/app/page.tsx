@@ -7,6 +7,7 @@ import faixa from 'public/assets/faixa.png'
 
 export default function Home() {
   const [cpf, setCPF] = useState('')
+  const [erroCPF, setErroCPF] = useState('')
   const [name, setName] = useState('')
   const [value, setValue] = useState('')
   const [typeValue, setTypeValue] = useState('multaAtraso')
@@ -18,6 +19,17 @@ export default function Home() {
     value:'',
   })
 
+  const validarCPF = () => {
+    const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
+    if (!cpfRegex.test(cpf)) {
+      setErroCPF('CPF inválido');
+      return false;
+    }
+    setErroCPF('');
+    return true;
+  }
+
+
   const handleEscolha = (event) => {
     setTypeValue(event.target.value);
   };
@@ -27,7 +39,13 @@ export default function Home() {
   // Prevenir página de dar reload
   const handleSignupForm = (e) => {
     e.preventDefault()
-    console.log({cpf, name, value, typeValue})
+    const cpfValido = validarCPF();
+    if (cpfValido) {
+      console.log('CPF válido', cpf);
+    } else {
+      console.log('CPF inválido');
+      // tratar cpf inválido
+    }
   }
 
   return (
@@ -107,7 +125,7 @@ export default function Home() {
       invalid:border-pink-500 invalid:text-pink-600
       focus:invalid:border-pink-500 focus:invalid:ring-pink-500' 
       name="cpf" 
-      type="number" 
+      type="text" 
       placeholder="CPF completo" 
       required
       value={cpf}
