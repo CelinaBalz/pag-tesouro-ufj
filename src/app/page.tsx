@@ -11,13 +11,31 @@ export default function Home() {
   const [name, setName] = useState('')
   const [value, setValue] = useState('')
   const [typeValue, setTypeValue] = useState('multaAtraso')
+  
+  {/* ------------------- GERANDO URL CUSTOMIZADA  ----------------------------------------------------------------------- */}
 
-  const [loginState, setLoginState] = useState({
-    typeValue: '',
-    cpf: '',
-    name: '',
-    value:'',
-  })
+  const [selectedService, setSelectedService] = useState('014423'); 
+
+  const generateURL = () => {
+    const baseURL = 'https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru/formulario';
+
+  const queryParams = {
+    servico: selectedService,
+    tipoPagamento: typeValue,
+    cpf: cpf,
+    nome: name,
+    valor: value,
+  };
+
+  const queryString = new URLSearchParams(queryParams).toString();
+  const finalURL = `${baseURL}?${queryString}`;
+
+  return finalURL;
+};
+
+  {/* ------------------- GERANDO URL CUSTOMIZADA  FIM ----------------------------------------------------------------------- */}
+
+ 
   
 {/* ------------------- FORMATANDO INPUT NOME PARA RECEBER APENAS LETRAS  ----------------------------------------------------------------------- */}
   const handleChangeName = (event) => {
@@ -95,17 +113,26 @@ export default function Home() {
 
   // Prevenir página de dar reload
   const handleSignupForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const cpfValido = validarCPF();
     if (cpfValido) {
-      console.log('CPF válido', cpf);
+      const servico = typeValue === 'multaAtraso' ? '014423' : 'segundaVia' ? 'seu_codigo' : 'outro_codigo'; // Ajuste os códigos conforme necessário
+      const formattedCpf = cpf.replace(/[^\d]/g, ''); // Remover caracteres não numéricos do CPF
+      const formattedName = encodeURIComponent(name); // Codificar o nome para ser seguro na URL
+      const formattedValue = value.replace(/[^\d]/g, ''); // Remover caracteres não numéricos do valor
+  
+      const url = `https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru/formulario?servico=${servico}/${typeValue}/${formattedCpf}/${formattedName}/${formattedValue}`;
+      
+      console.log('Link gerado:', url); // Mostra o link no console
+      
       mostrarErroCPF(false);
     } else {
       console.log('CPF inválido');
       mostrarErroCPF(true);
       // tratar cpf inválido
     }
-  }
+  };
+
   const handleEscolha = (event) => {
     setTypeValue(event.target.value);
   };
@@ -246,7 +273,7 @@ export default function Home() {
             </ul>
           </div>
         </footer>
-        {/* <div className=' m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
+         <div className='invisible m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
           <div className='flex flex-col  items-center rounded-xl  justify-center m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-50 w-[60vw] h-[30vh] shadow-2xl shadow-slate-300 '>
               <button className='self-end px-5 font-bold text-2xl hover:text-gray-500'>
                 X
@@ -259,7 +286,7 @@ export default function Home() {
               </a>
            </div>
           </div>
-        </div> */}
+        </div> 
       </div>
     </main>
   )
