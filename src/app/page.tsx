@@ -209,18 +209,7 @@ export default function Home() {
                 ></input> 
               </div>
 {/* ------------------- INPUT VALOR ----------------------------------------------------------------------- */}
-              {/* <div className='flex flex-col '>
-              <label  className='font-bold' htmlFor="valor">Valor</label>
-                <input 
-                  className='lg:w-[28.75rem] lg:text-xl mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-noneinvalid:border-pink-500 invalid:text-pink-60 focus:invalid:border-pink-500 focus:invalid:ring-pink-500' 
-                  name="valor" 
-                  type="number" 
-                  placeholder="Valor" 
-                  required
-                  value={value}
-                  onChange={(event) => setValue(event.target.value)}
-                ></input>
-              </div>       */}
+              
               <div className='flex flex-col '>
               <label  className='font-bold' htmlFor="valor">Valor</label>
                 <input 
@@ -234,7 +223,7 @@ export default function Home() {
                   maxLength={"15"}
                 ></input>
               </div>
-              <button className='lg:self-end lg:w-56 lg:h-10 transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:bg-azul-200 duration-300 shadow-lg shadow-blue-100 self-center mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-bold ' type="submit">Enviar</button>
+              <button className='l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
             </div> 
           </div>
         </form>     
@@ -257,6 +246,20 @@ export default function Home() {
             </ul>
           </div>
         </footer>
+        {/* <div className=' m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
+          <div className='flex flex-col  items-center rounded-xl  justify-center m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-50 w-[60vw] h-[30vh] shadow-2xl shadow-slate-300 '>
+              <button className='self-end px-5 font-bold text-2xl hover:text-gray-500'>
+                X
+              </button>
+           <div className='flex flex-col rounded-full '>
+              <h3 className='lg:text-2xl text-lg  font-bold self '>Link do GRU gerado com sucesso </h3>
+              <p>Clique no botão criado à seguir para prosseguir</p>
+              <a className=' rounded-full bg-azul-500  text-blue-50 font-bold py-2 my-5 text-center shadow-md hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer '>
+              Ir para o Pagamento
+              </a>
+           </div>
+          </div>
+        </div> */}
       </div>
     </main>
   )
