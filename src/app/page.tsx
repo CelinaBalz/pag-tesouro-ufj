@@ -4,6 +4,7 @@ import { useState } from 'react'
 import './globals.css'
 import Image from 'next/image'
 import faixa from 'public/assets/faixa.png'
+import Head from 'next/head';
 
 export default function Home() {
   const [cpf, setCPF] = useState('')
@@ -183,8 +184,10 @@ export default function Home() {
 
   return (
     <main className="   text-black bg-white min-h-screen flex-col items-center justify-between ">
-      <div className="lg:text-xl font-body z-10  w-full items-center justify-between text-sm ">
-    
+      <div className="lg:text-xl font-body z-10  w-full items-center justify-between text-sm ">  
+      <head>
+        <title>Pagamento GRU UFJ</title>
+      </head>
         <div className='bg-azul-900 w-[100vw]'>
           <a href="https://portalufj.jatai.ufg.br">
           <h1 className="text-sm p-3 px-5 text-slate-300 tracking-widest	">Universidade Federal de Jatai</h1>
