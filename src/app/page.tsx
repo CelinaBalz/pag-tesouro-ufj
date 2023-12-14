@@ -244,7 +244,7 @@ export default function Home() {
                 checked={typeValue === 'ambas'}
                 onChange={handleEscolha}
                 ></input>
-                Ambas as opções
+                Outras taxas
               </label>
             </div>
 {/* ------------------- INPUT CPF ----------------------------------------------------------------------- */}
