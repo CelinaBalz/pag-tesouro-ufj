@@ -186,14 +186,16 @@ export default function Home() {
       <div className="lg:text-xl font-body z-10  w-full items-center justify-between text-sm ">
     
         <div className='bg-azul-900 w-[100vw]'>
+          <a href="https://portalufj.jatai.ufg.br">
           <h1 className="text-sm p-3 px-5 text-slate-300 tracking-widest	">Universidade Federal de Jatai</h1>
+          </a>
         </div>
         
         <div >
           <Image src={faixa}  className=' w-[100vw] lg:h-[12vh] opacity-60' alt="" />
         </div>
 
-        <form onSubmit={handleSignupForm} className='relative lg:h-[90vh] md:items-center pt-[44px] pb-36 px-5 flex flex-col gap-3  items-start'>
+        <form onSubmit={handleSignupForm} className=' relative lg:h-[90vh] md:items-center pt-[44px] pb-36 lg:px-5 px-44 flex flex-col gap-3  items-start'>
           <div className='xl:w-[67vw] lg:w-[90vw]  lg:pb-16'>
             <h1 className='lg:text-2xl text-lg  font-bold self'>Preencha seus dados</h1>
             <p>Preencha seus dados para prosseguir com o pagamento de GRU</p>
@@ -281,10 +283,10 @@ export default function Home() {
 {/* ------------------- INPUT VALOR ----------------------------------------------------------------------- */}
               
               <div className='flex flex-col '>
-              <label  className='font-bold' htmlFor="valor">Valor</label>
+              <label  className='font-bold self-start' htmlFor="valor">Valor</label>
                 <input 
-                  className='lg:w-[28.75rem] lg:text-xl mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-noneinvalid:border-pink-500 invalid:text-pink-60 focus:invalid:border-pink-500 focus:invalid:ring-pink-500' 
-                  name="valor" 
+                className='lg:w-[28.75rem] lg:text-xl mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-noneinvalid:border-pink-500 invalid:text-pink-60 focus:invalid:border-pink-500 focus:invalid:ring-pink-500' 
+                name="valor" 
                   type="text" 
                   placeholder="Valor" 
                   required
@@ -293,26 +295,29 @@ export default function Home() {
                   maxLength={"15"}
                 ></input>
               </div>
-              <button className='l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
+              <button className='self-center lg:self-start l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
             </div> 
           </div>
         </form>     
        
-        <footer className='border-t-2 flex flex-col md:flex-row md:justify-around items-center'>
+        <footer className='border-t-2 flex flex-col items-start md:flex-row md:justify-around py-5 text-base '>
           <div className='py-4 flex flex-col place-items-center'>
-            <h3 className='font-bold pb-3'>Contato</h3>
-            <ul className='flex flex-col gap-3 items-center'>
-              <li>secom@ufj.edu.br</li>
-              <li>secom@ufj.edu.br</li>
-              <li>Seti (00) 000 - 000</li>
-            </ul>
+            <h3 className='font-bold pb-3 lg:self-start '>Contato </h3>
+            <ul className='flex flex-col gap-3 items-center lg:items-start'>
+              <li className='font-medium pt-5' >Biblioteca Flor-do-Cerrado</li>
+              <li className=''>(64)3606-8260</li>
+              <li>(64)3606-8261</li>
+              <li className='font-medium pt-5'>Biblioteca Binômino da Costa Lima</li>
+              <li>(64)3606-8380</li>
+            </ul>          
           </div>
           <div className='py-4 flex flex-col place-items-center'>
-            <h3 className='font-bold pb-3'>Redes sociais</h3>
-            <ul className='flex flex-col gap-3 items-center'>
-              <li><a href="">Instagram</a></li>
-              <li><a href="">Youtube</a></li>
-              <li><a href="">Twitter</a></li>
+            <h3 className='font-bold pb-3 lg:self-start '>Horários de funcionamento</h3>
+            <ul className='flex flex-col gap-3 items-center lg:items-start'>
+              <li className='font-medium pt-5'>Biblioteca Flor-do-Cerrado </li>
+              <li> Segunda à sexta das <span className='font-medium'>7h15 às 21h</span></li>
+              <li className='font- pt-5'> Biblioteca Binômino da Costa Lima</li>
+              <li> segunda à sexta das <span className='font-medium'>8h às 20h</span></li>
             </ul>
           </div>
         </footer>
