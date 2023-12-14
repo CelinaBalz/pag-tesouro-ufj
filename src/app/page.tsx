@@ -12,26 +12,48 @@ export default function Home() {
   const [value, setValue] = useState('')
   const [typeValue, setTypeValue] = useState('multaAtraso')
   
+
+  {/* ------------------- Fazendo o modal abrir  ----------------------------------------------------------------------- */}
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [generatedLink, setGeneratedLink] = useState('');
+  
   {/* ------------------- GERANDO URL CUSTOMIZADA  ----------------------------------------------------------------------- */}
 
-  const [selectedService, setSelectedService] = useState('014423'); 
-
+  
   const generateURL = () => {
-    const baseURL = 'https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru/formulario';
-
-  const queryParams = {
-    servico: selectedService,
-    tipoPagamento: typeValue,
-    cpf: cpf,
-    nome: name,
-    valor: value,
+    const baseURL = 'https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru/formulario?servico=014423%3Fservico%3D35&jurosEncargos=0%3Fservico%3D35&moraMulta=0%3Fservico%3D35&descontosAbatimentos=0%3Fservico%3D35';
+  
+    const cleanCPF = cpf.replace(/\D/g, ''); // Remove não números do CPF
+    const encodedName = encodeURIComponent(name);
+  
+    const referencia = typeValue === 'multaAtraso' ? '20230151' : typeValue === 'segundaVia' ? '20230152' : '20230153';
+    const valor = parseFloat(value.replace(/[^\d,.]/g, '').replace(',', '.')).toFixed(2);
+    const competencia = new Date().toISOString().substr(0, 7);
+    const vencimento = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().substr(0, 10);
+  
+    const queryParams = {
+      servico: '35',
+      cpfCnpjContribuinte: cleanCPF,
+      nomeContribuinte: encodedName,
+      numeroReferencia: referencia,
+      valorPrincipal: valor,
+      competencia: competencia,
+      vencimento: vencimento,
+    };
+  
+    const queryString = Object.entries(queryParams)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+  
+    const finalURL = `${baseURL}&${queryString}`;
+  
+    return finalURL;
   };
-
-  const queryString = new URLSearchParams(queryParams).toString();
-  const finalURL = `${baseURL}?${queryString}`;
-
-  return finalURL;
-};
+  
+  
+  
+    
 
   {/* ------------------- GERANDO URL CUSTOMIZADA  FIM ----------------------------------------------------------------------- */}
 
@@ -112,25 +134,46 @@ export default function Home() {
 
 
   // Prevenir página de dar reload
+
   const handleSignupForm = (e) => {
     e.preventDefault();
+    const formattedCpf = formatarCPF(cpf);
     const cpfValido = validarCPF();
-    if (cpfValido) {
-      const servico = typeValue === 'multaAtraso' ? '014423' : 'segundaVia' ? 'seu_codigo' : 'outro_codigo'; // Ajuste os códigos conforme necessário
-      const formattedCpf = cpf.replace(/[^\d]/g, ''); // Remover caracteres não numéricos do CPF
-      const formattedName = encodeURIComponent(name); // Codificar o nome para ser seguro na URL
-      const formattedValue = value.replace(/[^\d]/g, ''); // Remover caracteres não numéricos do valor
-  
-      const url = `https://pagtesouro.tesouro.gov.br/portal-gru/#/pagamento-gru/formulario?servico=${servico}/${typeValue}/${formattedCpf}/${formattedName}/${formattedValue}`;
-      
-      console.log('Link gerado:', url); // Mostra o link no console
-      
-      mostrarErroCPF(false);
+    const formattedName = name; 
+    const formattedValue = formatCurrency(value); // Formata o valor para a moeda
+
+    let servico = '';
+    if (typeValue === 'multaAtraso') {
+      servico = 'multa_atraso';
+    } else if (typeValue === 'segundaVia') {
+      servico = 'segunda_via'; 
     } else {
-      console.log('CPF inválido');
-      mostrarErroCPF(true);
+      servico = 'ambos'; 
+    }
+
+    if (cpfValido) {
+      let servico = '';
+      if (typeValue === 'multaAtraso') {
+        servico = '20230151';
+      } else if (typeValue === 'segundaVia') {
+        servico = '20230152'; 
+      } else {
+        servico = '20230153'; 
+      }
+
+      // Código para gerar o link...
+      const url = generateURL(); // Chama a função para gerar a URL
+      console.log('Link gerado:', url);
+      setGeneratedLink(url); // Armazena o link gerado no estado
+  
+      setModalVisible(true); // Mostra o modal
+      mostrarErroCPF(false);
       // tratar cpf inválido
     }
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
   };
 
   const handleEscolha = (event) => {
@@ -273,20 +316,25 @@ export default function Home() {
             </ul>
           </div>
         </footer>
-         <div className='invisible m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
-          <div className='flex flex-col  items-center rounded-xl  justify-center m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-50 w-[60vw] h-[30vh] shadow-2xl shadow-slate-300 '>
-              <button className='self-end px-5 font-bold text-2xl hover:text-gray-500'>
-                X
-              </button>
-           <div className='flex flex-col rounded-full '>
-              <h3 className='lg:text-2xl text-lg  font-bold self '>Link do GRU gerado com sucesso </h3>
-              <p>Clique no botão criado à seguir para prosseguir</p>
-              <a className=' rounded-full bg-azul-500  text-blue-50 font-bold py-2 my-5 text-center shadow-md hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer '>
-              Ir para o Pagamento
-              </a>
-           </div>
+{/* ------------------- MODAL   ----------------------------------------------------------------------- */}
+        {modalVisible &&(
+          <div className=' m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
+            <div className='flex flex-col  items-center rounded-xl  justify-center m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-50 w-[60vw] h-[30vh] shadow-2xl shadow-slate-300 '>
+               <button onClick={handleCloseModal} className='self-end px-5 font-bold text-2xl hover:text-gray-500'>
+                 X
+                </button>
+            <div className='flex flex-col rounded-full '>
+                <h3 className='lg:text-2xl text-lg  font-bold self '>Link do GRU gerado com sucesso </h3>
+                <p>Clique no botão criado à seguir para prosseguir</p>
+                <a href={generatedLink} className=' rounded-full bg-azul-500  text-blue-50 font-bold py-2 my-5 text-center shadow-md hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer '>
+                Ir para o Pagamento
+                </a>
+             </div>
+            </div>
           </div>
-        </div> 
+        )}
+{/* ------------------- MODAL  FIM ----------------------------------------------------------------------- */}
+
       </div>
     </main>
   )
