@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Head from 'next/head';
 
 
 
@@ -15,6 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <title>Pagamento GRU UFJ</title>
+      </head>
       <body >{children}</body>
     </html>
   )
