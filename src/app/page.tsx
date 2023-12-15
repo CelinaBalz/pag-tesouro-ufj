@@ -4,6 +4,7 @@ import { useState } from 'react'
 import './globals.css'
 import Image from 'next/image'
 import faixa from 'public/assets/faixa.png'
+import Header from './components/Header'
 
 export default function Home() {
   const [cpf, setCPF] = useState('')
@@ -188,15 +189,7 @@ export default function Home() {
     <main className="   text-black bg-white min-h-screen flex-col items-center justify-between ">
       <div className="lg:text-xl font-body z-10  w-full items-center justify-between text-sm ">  
 
-        <div className='bg-azul-900 w-[100vw]'>
-          <a href="https://portalufj.jatai.ufg.br">
-          <h1 className="text-sm p-3 px-5 text-slate-300 tracking-widest	">Universidade Federal de Jatai</h1>
-          </a>
-        </div>
-        
-        <div >
-          <Image src={faixa}  className=' w-[100vw] lg:h-[12vh] opacity-60' alt="" />
-        </div>
+        <Header></Header>
 
         <form onSubmit={handleSignupForm} className=' relative lg:h-[90vh] md:items-center pt-[44px] pb-36 lg:px-5 px-44 flex flex-col gap-3  items-start'>
           <div className='xl:w-[67vw] lg:w-[90vw]  lg:pb-16'>
