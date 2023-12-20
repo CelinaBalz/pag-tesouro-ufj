@@ -55,14 +55,7 @@ export default function Home() {
   
     return finalURL;
   };
-  
-  
-  
-    
 
-  {/* ------------------- GERANDO URL CUSTOMIZADA  FIM ----------------------------------------------------------------------- */}
-
- 
   
 {/* ------------------- FORMATANDO INPUT NOME PARA RECEBER APENAS LETRAS  ----------------------------------------------------------------------- */}
   const handleChangeName = (event) => {
@@ -70,8 +63,6 @@ export default function Home() {
     const formattedValue = inputValue.replace(/[^a-zA-Z\s]/g, '');
     setName(formattedValue);
   }
-
-
 
 {/* ------------------- FORMATANDO INPUT DO VALOR EM REAIS BR  ----------------------------------------------------------------------- */}
   const formatCurrency = (input) => {
@@ -186,7 +177,6 @@ export default function Home() {
               htmlFor=""
               >Selecione o tipo de pagamento</label>
               <label className=' flex flex-row gap-3 '  htmlFor="">
-                {/* ------------------- RADIO MULTA ATRASO ----------------------------------------------------------------------- */}
                 <input  
                 className="w-6" 
                 name="tipopag" 
@@ -199,8 +189,6 @@ export default function Home() {
                 Multa de atraso
               </label>
               <label className=' flex flex-row gap-3 ' htmlFor="">
-                {/* ------------------- RADIO SEGUNDA VIA  ----------------------------------------------------------------------- */}
-
                 <input 
                 className=" w-6" 
                 name="tipopag" 
@@ -213,8 +201,6 @@ export default function Home() {
                 Segunda via de crachá    
               </label>
               <label className=' flex flex-row gap-3 ' htmlFor="">
-                {/* ------------------- RADIO AMBAS ESCOLHAS ----------------------------------------------------------------------- */}
-
                 <input 
                 className="shadow-md w-6 border-blue-900" 
                 name="tipopag" 

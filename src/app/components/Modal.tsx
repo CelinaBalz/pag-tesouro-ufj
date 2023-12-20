@@ -2,6 +2,9 @@
 import React from 'react';
 
 const Modal = ({ isVisible, handleCloseModal, generatedLink }) => {
+
+
+  
   return isVisible && (
     <div className='m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
             <div className='flex flex-col  items-center rounded-xl  justify-center m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-50 w-[60vw] h-[30vh] shadow-2xl shadow-slate-300 '>
