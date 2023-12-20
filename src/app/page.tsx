@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 import Modal from './components/Modal'
 import InputCPF, { formatarCPF } from './components/InputCPF'
 import InputNome from './components/InputNome'
+import InputValor from './components/InputValor'
 
 
 export default function Home() {
@@ -229,20 +230,7 @@ export default function Home() {
             <div className='flex flex-col gap-10'>
               <InputCPF cpf={cpf} handleChangeCPF={handleChangeCPF}></InputCPF>                    
               <InputNome name={name} handleChangeName={handleChangeName} ></InputNome>
-          {/* ------------------- INPUT VALOR ----------------------------------------------------------------------- */}
-            <div className='flex flex-col '>
-              <label  className='font-bold self-start' htmlFor="valor">Valor</label>
-                <input 
-                className='lg:w-[28.75rem] lg:text-xl mt-1 block w-full px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-noneinvalid:border-pink-500 invalid:text-pink-60 ' 
-                name="valor" 
-                  type="text" 
-                  placeholder="Valor" 
-                  required
-                  value={value}
-                  onChange={handleChange}
-                  maxLength={"15"}
-                ></input>
-              </div>
+              <InputValor value={value} handleChange={handleChange} />    
               <button className='self-center lg:self-start l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
             </div> 
           </div>
