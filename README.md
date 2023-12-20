@@ -31,8 +31,8 @@ npm run dev
 3. Acesse [http://localhost:3000](http://localhost:3000) no navegador
 
 ## Tecnolgoias ##
-Next.js com Express e Joi
-React com Formik 
+Next.js 
+React 
 Tailwind
 PostCSS
 Postgre 
