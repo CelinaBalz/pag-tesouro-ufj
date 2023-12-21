@@ -8,6 +8,7 @@ import Modal from './components/Modal'
 import InputCPF, { formatarCPF } from './components/InputCPF'
 import InputNome from './components/InputNome'
 import InputValor from './components/InputValor'
+import InputRadio from './components/InputRadio'
 
 
 export default function Home() {
@@ -80,8 +81,6 @@ export default function Home() {
     setValue(formatCurrency(inputValue));
   }
 
-
-
   const handleChangeCPF = (event) => {
     const formattedValue = formatarCPF(event.target.value);
     setCPF(formattedValue);
@@ -96,7 +95,6 @@ export default function Home() {
       }
     }
 
-
     const validarCPF = () => {
       const cpfRegex = /^[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}$/;
       if (!cpfRegex.test(cpf)) {
@@ -109,7 +107,6 @@ export default function Home() {
       return true;
     };
     
-
 
   // Prevenir página de dar reload
 
@@ -171,54 +168,13 @@ export default function Home() {
             <p>Preencha seus dados para prosseguir com o pagamento de GRU</p>
           </div>
           <div className='lg:flex lg:flex-row lg:gap-28 '>        
-            <div className='flex flex-col gap-8 my-5 lg:my-0'>
-              <label 
-              className='lg:text-2xl text-lg  font-bold' 
-              htmlFor=""
-              >Selecione o tipo de pagamento</label>
-              <label className=' flex flex-row gap-3 '  htmlFor="">
-                <input  
-                className="w-6" 
-                name="tipopag" 
-                type="radio"  
-                required
-                value="multaAtraso"
-                checked={typeValue === 'multaAtraso'}
-                onChange={handleEscolha}
-                ></input>
-                Multa de atraso
-              </label>
-              <label className=' flex flex-row gap-3 ' htmlFor="">
-                <input 
-                className=" w-6" 
-                name="tipopag" 
-                type="radio"  
-                required
-                  value="segundaVia"
-                  checked={typeValue === 'segundaVia'}
-                  onChange={handleEscolha}
-                  ></input>
-                Segunda via de crachá    
-              </label>
-              <label className=' flex flex-row gap-3 ' htmlFor="">
-                <input 
-                className="shadow-md w-6 border-blue-900" 
-                name="tipopag" 
-                type="radio"  
-                required
-                value="ambas"
-                checked={typeValue === 'ambas'}
-                onChange={handleEscolha}
-                ></input>
-                Outras taxas
-              </label>
-            </div>
+            <InputRadio typeValue={typeValue} handleEscolha={handleEscolha} ></InputRadio>
             <div className='flex flex-col gap-10'>
-              <InputCPF cpf={cpf} handleChangeCPF={handleChangeCPF}></InputCPF>                    
-              <InputNome name={name} handleChangeName={handleChangeName} ></InputNome>
-              <InputValor value={value} handleChange={handleChange} />    
-              <button className='self-center lg:self-start l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
-            </div> 
+            <InputCPF cpf={cpf} handleChangeCPF={handleChangeCPF}></InputCPF>                    
+            <InputNome name={name} handleChangeName={handleChangeName} ></InputNome>
+            <InputValor value={value} handleChange={handleChange} />    
+            <button className='self-center lg:self-start l\mt-5 w-36 h-8 rounded-full bg-azul-500  text-blue-50 font-medium hover:shadow-azul-200 hover:bg-blue-700 hover:ease-in-out cursor-pointer' type="submit">Gerar GRU</button>
+          </div> 
           </div>
         </form>     
         <Footer></Footer>

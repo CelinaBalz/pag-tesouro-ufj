@@ -21,8 +21,6 @@ export const formatarCPF = (value) => {
     }
 
 const InputCPF = ({ cpf, handleChangeCPF }) => {
-   
-    
     
     return (
         <div className='flex flex-col '>

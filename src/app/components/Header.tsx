@@ -8,7 +8,7 @@ export default function Header() {
         <h1 className="text-sm p-3 px-5 text-slate-300 tracking-widest	">Universidade Federal de Jatai</h1>
         </a>
         <div >
-        <Image src={faixa}  className=' w-[100vw] lg:h-[12vh] opacity-60' alt="" />
+        <Image src={faixa}   className=' w-[100vw] lg:h-[12vh] opacity-60' priority={true}  alt="" />
         </div>
       </div>
     )
