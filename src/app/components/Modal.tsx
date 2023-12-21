@@ -1,9 +1,7 @@
-// Modal.js
+
 import React from 'react';
 
 const Modal = ({ isVisible, handleCloseModal, generatedLink }) => {
-
-
   
   return isVisible && (
     <div className='m-auto top-0 left-0 bottom-0 right-0 absolute bg-slate-900 bg-opacity-25 w-[100vw] h-[100vw]'>
@@ -23,4 +21,4 @@ const Modal = ({ isVisible, handleCloseModal, generatedLink }) => {
   );
 };
 
-export default Modal;
+export default Modal ;
